@@ -28,7 +28,7 @@ pipeline {
           sh "touch demo.txt"
           sh "wget https://github.com/Kitware/CMake/releases/download/v3.15.0-rc2/cmake-3.15.0-rc2.tar.gz"
           sh "ls -la"
-          
+          sh "chmod +x ./ami_id.sh"
           echo "job_name ${env.JOB_NAME}"
           echo "build_number ${env.BUILD_NUMBER}"
           echo "artifact: ${env.ARTIFACT}"
