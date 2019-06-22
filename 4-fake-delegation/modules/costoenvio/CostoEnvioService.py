@@ -13,7 +13,7 @@ class CostoEnvioService:
 
         costo_x_distancia = self.obtener_costo_pais(pais)
 
-        return costo_x_peso + costo_x_distancia
+        return costo_x_peso + costo_x_distancia + 2
 
     def actualizar_costo(self, pais, costo):
         if costo == 0:
