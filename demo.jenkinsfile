@@ -3,7 +3,7 @@ pipeline {
   parameters {
     string(name: 'SLACK_CHANNEL', defaultValue: '#deploys', description: '')
     choice(name: 'TYPE', choices: 'aut\ncron\ndata', description: 'Autoscaling, Cron or Data')
-    booleanParam(name: 'DEPLOY', defaultValue: false, description: 'Update aws ami')
+    booleanParam(name: 'LAUNCH_CONFIGURATION', defaultValue: false, description: 'Update aws ami')
   }
 
   options {
@@ -28,7 +28,6 @@ pipeline {
           sh "touch demo.txt"
           sh "wget https://github.com/Kitware/CMake/releases/download/v3.15.0-rc2/cmake-3.15.0-rc2.tar.gz"
           sh "ls -la"
-          
           echo "job_name ${env.JOB_NAME}"
           echo "build_number ${env.BUILD_NUMBER}"
           echo "artifact: ${env.ARTIFACT}"
@@ -56,17 +55,5 @@ pipeline {
         }
       }
     }
-    
-    stage ('Deploy') {
-      when {
-        expression {
-          return params.DEPLOY ==~ /(?i)(Y|YES|T|TRUE|ON|RUN)/
-        }
-      }
-      steps {
-        sh "echo hare_deploy"
-      }
-    }
-
   }
 }
